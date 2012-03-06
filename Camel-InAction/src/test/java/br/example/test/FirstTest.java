@@ -23,60 +23,55 @@ import br.example.test.utils.TestLogHelper;
  */
 @RunWith(Parameterized.class)
 public class FirstTest extends CamelTestSupport {
-	
-	static final Logger LOGGER = LoggerFactory.getLogger(FirstTest.class);
-	
-	private static final String NAME_TEST = FirstTest.class.getName();
-	
-	private FileCopierWithCamel fileCopierWithCamel;
-	
-	public FirstTest(FileCopierWithCamel fileCopierWithCamel) {
-		this.fileCopierWithCamel = fileCopierWithCamel;
-	}
-	
-	@BeforeClass
-	public static void testSetUp() throws Exception {
-		TestLogHelper.startTestLogging(NAME_TEST);
-	}
 
-	@AfterClass
-	public static void testCleanUp() throws Exception {
-		TestLogHelper.stopTestLogging();
-	}
-	
-	@Parameterized.Parameters
-    public static Collection<Object[]> getMensagensDeComando() {
-    	
-    	CamelContext context = new DefaultCamelContext();
-    	FileCopierWithCamel fileCopierWithCamel = new FileCopierWithCamel(context);
-    	
-    	return Arrays.asList(new Object[][] {
-				{ fileCopierWithCamel }
-        });
-    	
+    static final Logger LOGGER = LoggerFactory.getLogger(FirstTest.class);
+
+    private static final String NAME_TEST = FirstTest.class.getName();
+
+    private FileCopierWithCamel fileCopierWithCamel;
+
+    public FirstTest(FileCopierWithCamel fileCopierWithCamel) {
+        this.fileCopierWithCamel = fileCopierWithCamel;
     }
-	
+
+    @BeforeClass
+    public static void testSetUp() throws Exception {
+        TestLogHelper.startTestLogging(NAME_TEST);
+    }
+
+    @AfterClass
+    public static void testCleanUp() throws Exception {
+        TestLogHelper.stopTestLogging();
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> getMensagensDeComando() {
+
+        CamelContext context = new DefaultCamelContext();
+        FileCopierWithCamel fileCopierWithCamel = new FileCopierWithCamel(context);
+
+        return Arrays.asList(new Object[][] { { fileCopierWithCamel } });
+
+    }
+
     @Test
     public void testInstanceFileCopierWithCamel() {
-    	assertNotNull(fileCopierWithCamel);
+        assertNotNull(fileCopierWithCamel);
     }
-    
-	/**
-	 * Make sure that a file exists on 'data/inbox' folder 
-	 * named with 'hello.txt'
-	 * before run this method. 
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testMoveFile() throws Exception {
-		
-		fileCopierWithCamel.transferFiles();
-		
-		File target = new File("data/outbox/hello.txt");
-		
-		assertTrue("File not moved", !target.exists());
-	}
-	
-	
+
+    /**
+     * Make sure that a file exists on 'data/inbox' folder named with 'hello.txt' before run this method.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testMoveFile() throws Exception {
+
+        fileCopierWithCamel.transferFiles();
+
+        File target = new File("data/outbox/hello.txt");
+
+        assertTrue("File not moved", !target.exists());
+    }
+
 }
