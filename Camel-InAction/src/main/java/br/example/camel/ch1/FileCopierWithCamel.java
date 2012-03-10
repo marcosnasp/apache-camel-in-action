@@ -4,6 +4,8 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
+import br.example.camel.ch1.routers.FileTransferRouterBuilder;
+
 public class FileCopierWithCamel {
 
     private CamelContext contextFileTransfer;
@@ -22,12 +24,7 @@ public class FileCopierWithCamel {
     }
 
     private static RouteBuilder createFileTransferRouteBuider() {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("file:data/inbox?noop=true").to("file:data/outbox");
-            }
-        };
+        return new FileTransferRouterBuilder();
     }
 
     /**

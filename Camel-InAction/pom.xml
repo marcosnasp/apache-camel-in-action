@@ -8,6 +8,7 @@
 	<properties>
 		<camel-version>2.9.0</camel-version>
 		<logback-version>1.0.0</logback-version>
+		<activemq-version>5.3.2</activemq-version>
 	</properties>
 
 	<dependencies>
@@ -22,6 +23,19 @@
 			<artifactId>camel-test</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jms</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>${activemq-version}</version>
+		</dependency>
+		
 
 		<!-- Log API -->
 		<dependency>
