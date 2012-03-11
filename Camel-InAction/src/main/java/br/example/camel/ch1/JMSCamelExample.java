@@ -11,7 +11,7 @@ import br.example.camel.ch1.routers.JMSRouterBuilder;
 
 public class JMSCamelExample {
 
-	private static final String URL_BROKER = "http://localhost:8161/";
+	private static final String URL_BROKER = "tcp://localhost:8161/";
 	
 	private ConnectionFactory factory;
 	private CamelContext context;

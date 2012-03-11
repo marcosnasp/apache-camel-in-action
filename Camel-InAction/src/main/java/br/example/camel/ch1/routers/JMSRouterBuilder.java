@@ -6,7 +6,7 @@ public class JMSRouterBuilder extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		from("file:data/inbox?noop=true").to("jms:incomingOrders");
+		from("file:data/inbox?noop=true").to("jms:topic:flex-client-broadcast-topic");
 	}
 
 }
