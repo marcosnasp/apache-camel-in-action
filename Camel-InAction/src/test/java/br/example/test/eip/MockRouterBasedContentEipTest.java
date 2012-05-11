@@ -89,4 +89,26 @@ public class MockRouterBasedContentEipTest extends CamelTestSupport {
 
     }
 
+    @Test
+    public void testCamelKeyboard() throws Exception {
+
+        final String comando = "{\"id_horus\":\"ID0001\",\"cod_servico\":\"04\",\"msg\":\"04\",\"param\":\"01\",\"hash\":\"be4a90ed133fad3c78121ac605023fff1422d75d\"}";
+
+        template.sendBody("seda:comandoTopic", comando);
+
+        verifyEndpointForKey("keyboard");
+
+    }
+    
+    @Test
+    public void testCamelModem3G() throws Exception {
+
+        final String comando = "{\"id_horus\":\"ID0001\",\"cod_servico\":\"06\",\"msg\":\"04\",\"param\":\"01\",\"hash\":\"be4a90ed133fad3c78121ac605023fff1422d75d\"}";
+
+        template.sendBody("seda:comandoTopic", comando);
+
+        verifyEndpointForKey("modem3g");
+
+    }
+    
 }
