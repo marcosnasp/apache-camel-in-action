@@ -30,6 +30,32 @@
 			<version>${camel-version}</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-mina</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-mina2</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		 -->
+		
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-quartz</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-stream</artifactId>
+		    <version>${camel-version}</version>
+		</dependency>
+		
 		<!-- Log API -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -48,12 +74,43 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.2</version>
 		</dependency>
+		
+		<dependency>
+		     <groupId>com.google.code.gson</groupId>
+		     <artifactId>gson</artifactId>
+		     <version>2.1</version>
+		     <scope>compile</scope>
+	    </dependency>
+	    
+	    <dependency>
+	    	<groupId>org.megatech.horus</groupId>
+	    	<artifactId>horus-sgc</artifactId>
+	    	<version>1.0.1-SNAPSHOT</version>
+	    	<type>jar</type>
+	    </dependency>
 
 		<!-- Tests -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
+		</dependency>
+		
+		<!-- Dependencias para a comunicacao remota com as filas de mensagens... -->
+		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-ejb-client-bom</artifactId>
+			<version>7.1.1.Final</version>
+			<scope>runtime</scope>
+			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-jms-client-bom</artifactId>
+			<version>7.1.1.Final</version>
+			<scope>runtime</scope>
+			<type>pom</type>
 		</dependency>
 
 	</dependencies>

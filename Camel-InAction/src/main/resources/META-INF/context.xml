@@ -28,6 +28,13 @@
 			<value>jms/RemoteConnectionFactory</value>
 		</property>
 	</bean>
+	
+	<bean id="demuxing" class="org.apache.mina.filter.codec.demux.DemuxingProtocolCodecFactory" />
+	
+	<bean id="codec" class="org.megatech.horus.sgc.CodecFactory" />
+	
+	<bean id="logQuartzBean" class="br.example.camel.ch1.eip.LogQuartzBean" />
+	
 	<!-- 
 	<bean id="validadorComando" class="org.megatech.horus.sgc.messages.validadores.ValidadorDeMensagem" />
 	
