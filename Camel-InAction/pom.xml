@@ -114,6 +114,40 @@
 		</dependency>
 
 	</dependencies>
-
+	
+	<profiles>
+		<profile>
+            <id>mina1</id>
+            <properties>
+                <!-- we use Camel spring Main class as the server got all what it needs to start in the camel-context-mina1 file -->
+                <target.main.class>org.apache.camel.spring.Main</target.main.class>
+                <target.cmd.args>-ac META-INF/camel-context-mina1.xml</target.cmd.args>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>mina2</id>
+            <properties>
+                <!-- we use Camel spring Main class as the server got all what it needs to start in the camel-context-mina2 file -->
+                <target.main.class>org.apache.camel.spring.Main</target.main.class>
+                <target.cmd.args>-ac META-INF/camel-context-mina2.xml</target.cmd.args>
+            </properties>
+        </profile>
+	
+	</profiles>
+	
+	<build>
+		<plugins>
+			<plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>exec-maven-plugin</artifactId>
+		        <configuration>
+		            <mainClass>${target.main.class}</mainClass>
+		            <includePluginDependencies>false</includePluginDependencies>
+		            <commandlineArgs>${target.cmd.args}</commandlineArgs>
+		        </configuration>
+	    	</plugin>
+		</plugins>
+	</build>
 
 </project>
