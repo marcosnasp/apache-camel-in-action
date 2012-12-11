@@ -1,6 +1,5 @@
 package br.example.camel.ch1.eip;
 
-import org.megatech.horus.sgc.messages.json.JsonReaderImpl;
 import org.megatech.horus.sgc.messages.json.RequisicaoMensagem;
 import org.megatech.horus.sgc.messages.validadores.ValidadorDeMensagem;
 
