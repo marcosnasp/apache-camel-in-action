@@ -103,8 +103,8 @@
 			<version>7.1.1.Final</version>
 			<scope>runtime</scope>
 			<type>pom</type>
-		</dependency>
-		
+		</dependency
+	
 		<dependency>
 			<groupId>org.jboss.as</groupId>
 			<artifactId>jboss-as-jms-client-bom</artifactId>
@@ -112,8 +112,7 @@
 			<scope>runtime</scope>
 			<type>pom</type>
 		</dependency>
-
-	</dependencies>
+	  </dependencies>
 	
 	<profiles>
 		<profile>
