@@ -86,22 +86,6 @@
 			<version>${junit.version}</version>
 		</dependency>
 
-		<!-- Dependencias para a comunicacao remota com as filas de mensagens... -->
-		<dependency>
-			<groupId>org.jboss.as</groupId>
-			<artifactId>jboss-as-ejb-client-bom</artifactId>
-			<version>7.1.1.Final</version>
-			<scope>runtime</scope>
-			<type>pom</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.jboss.as</groupId>
-			<artifactId>jboss-as-jms-client-bom</artifactId>
-			<version>7.1.1.Final</version>
-			<scope>runtime</scope>
-			<type>pom</type>
-		</dependency>
 	</dependencies>
 
 	<profiles>
