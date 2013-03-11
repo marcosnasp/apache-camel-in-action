@@ -12,9 +12,9 @@ public class MockJmsTest extends CamelTestSupport {
 
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext(
-                       "META-INF/context.xml");       
+            "META-INF/context.xml");
     }
-    
+
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext camelContext = super.createCamelContext();
@@ -34,16 +34,16 @@ public class MockJmsTest extends CamelTestSupport {
 
     @Test
     public void testCamelFromJms() throws Exception {
-        
+
         final String comando = "{\"id_horus\":\"ID0001\",\"cod_servico\":\"03\",\"msg\":\"04\",\"param\":\"01\",\"hash\":\"be4a90ed133fad3c78121ac605023fff1422d75d\"}";
-        
+
         MockEndpoint mockEndpoint = getMockEndpoint("mock:quote");
-        
+
         template.sendBody("jms:topic:comandoTopic", comando);
-        
+
         mockEndpoint.expectedBodiesReceived(comando);
-        
+
         mockEndpoint.assertIsSatisfied();
-        
+
     }
 }

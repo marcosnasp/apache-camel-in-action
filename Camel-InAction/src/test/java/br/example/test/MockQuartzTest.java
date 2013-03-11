@@ -15,17 +15,17 @@ public class MockQuartzTest extends CamelTestSupport {
 
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext(
-                       "META-INF/context.xml");       
+            "META-INF/context.xml");
     }
-    
+
     @Override
     protected CamelContext createCamelContext() throws Exception {
         JndiContext context = new JndiContext();
         context.bind("logQuartzBean", new LogQuartzBean());
-        
+
         CamelContext camelContext = new DefaultCamelContext(context);
         camelContext.addComponent("jms", camelContext.getComponent("seda"));
-        
+
         return camelContext;
     }
 
@@ -35,21 +35,20 @@ public class MockQuartzTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("quartz://timerName?trigger.repeatInterval=15s&trigger.repeatCount=4").setBody().simple("ID").
-                 to("bean:logQuartzBean").
-                 to("mock:quote");
+                    to("bean:logQuartzBean").
+                    to("mock:quote");
             }
         };
     }
 
-    //timer://foo?fixedRate=true&repeatCount=-1&delay=1s&period=5s
-    //quartz://timerName?trigger.repeatInterval=10000&trigger.repeatCount=50
+    // timer://foo?fixedRate=true&repeatCount=-1&delay=1s&period=5s
+    // quartz://timerName?trigger.repeatInterval=10000&trigger.repeatCount=50
     @Test
     public void testCamelFromJms() throws Exception {
-        
-        startCamelContext(); 
+
+        startCamelContext();
         Thread.sleep(60000);
         stopCamelContext();
-        
-        
+
     }
 }

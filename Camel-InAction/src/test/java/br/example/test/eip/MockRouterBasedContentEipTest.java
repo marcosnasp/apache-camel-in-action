@@ -60,9 +60,9 @@ public class MockRouterBasedContentEipTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("seda:comandoTopic").choice().when(body().contains("\"cod_servico\":\"03\"")).to("mock:camera")
-                        .when(body().contains("\"cod_servico\":\"01\"")).to("mock:gps")
-                        .when(body().contains("\"cod_servico\":\"04\"")).to("mock:keyboard")
-                        .when(body().contains("\"cod_servico\":\"06\"")).to("mock:modem3g").otherwise().to("mock:quote");
+                    .when(body().contains("\"cod_servico\":\"01\"")).to("mock:gps")
+                    .when(body().contains("\"cod_servico\":\"04\"")).to("mock:keyboard")
+                    .when(body().contains("\"cod_servico\":\"06\"")).to("mock:modem3g").otherwise().to("mock:quote");
             }
         };
     }
@@ -73,7 +73,7 @@ public class MockRouterBasedContentEipTest extends CamelTestSupport {
         final String comando = "{\"id_horus\":\"ID0001\",\"cod_servico\":\"03\",\"msg\":\"04\",\"param\":\"01\",\"hash\":\"be4a90ed133fad3c78121ac605023fff1422d75d\"}";
 
         template.sendBody("seda:comandoTopic", comando);
-        
+
         verifyEndpointForKey("camera");
 
     }
@@ -99,7 +99,7 @@ public class MockRouterBasedContentEipTest extends CamelTestSupport {
         verifyEndpointForKey("keyboard");
 
     }
-    
+
     @Test
     public void testCamelModem3G() throws Exception {
 
@@ -110,5 +110,5 @@ public class MockRouterBasedContentEipTest extends CamelTestSupport {
         verifyEndpointForKey("modem3g");
 
     }
-    
+
 }

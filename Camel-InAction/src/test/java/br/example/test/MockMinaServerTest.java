@@ -14,16 +14,16 @@ public class MockMinaServerTest extends CamelTestSupport {
 
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext(
-                       "META-INF/context.xml");       
+            "META-INF/context.xml");
     }
-    
+
     @Override
     protected CamelContext createCamelContext() throws Exception {
         JndiContext context = new JndiContext();
         context.bind("logQuartzBean", new LogQuartzBean());
-        
+
         CamelContext camelContext = new DefaultCamelContext(context);
-        
+
         return camelContext;
     }
 
@@ -33,8 +33,8 @@ public class MockMinaServerTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("mina:tcp://localhost:5000?minaLogger=true&disconnectOnNoReply=false&sync=false;codec=#codec").
-                     to("bean:logQuartzBean").
-                     to("mock:quote");
+                    to("bean:logQuartzBean").
+                    to("mock:quote");
             }
         };
     }

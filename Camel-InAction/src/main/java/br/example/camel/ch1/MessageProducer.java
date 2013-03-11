@@ -9,30 +9,30 @@ import org.slf4j.LoggerFactory;
 @InOnly
 public class MessageProducer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MessageProducer.class);
-	
-	private String topic = "jms:topic:flex-client-broadcast-topic";
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageProducer.class);
 
-	@EndpointInject
-	protected ProducerTemplate producer;
-	
-	public MessageProducer() {
-	}
-	
-	public void init() {
-		LOGGER.info(MessageProducer.class.getName() + " initialized");
-	}
+    private String topic = "jms:topic:flex-client-broadcast-topic";
 
-	public void send(String message) {
-		producer.sendBody("jms:topic:flex-client-broadcast-topic", message);
-	}
+    @EndpointInject
+    protected ProducerTemplate producer;
 
-	public String getTopic() {
-		return topic;
-	}
+    public MessageProducer() {
+    }
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-	
+    public void init() {
+        LOGGER.info(MessageProducer.class.getName() + " initialized");
+    }
+
+    public void send(String message) {
+        producer.sendBody("jms:topic:flex-client-broadcast-topic", message);
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
 }
