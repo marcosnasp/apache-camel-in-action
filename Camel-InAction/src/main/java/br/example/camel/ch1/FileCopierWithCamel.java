@@ -1,10 +1,9 @@
 package br.example.camel.ch1;
 
+import br.example.camel.ch1.routers.FileTransferRouterBuilder;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
-
-import br.example.camel.ch1.routers.FileTransferRouterBuilder;
 
 public class FileCopierWithCamel {
 
