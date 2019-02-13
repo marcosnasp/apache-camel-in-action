@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory
+				</prop>
+				<prop key="java.naming.provider.url">remote://localhost:4447</prop>
+				<prop key="java.naming.factory.url.pkgs">org.jnp.interfaces:org.jboss.naming</prop>
+				<prop key="java.naming.security.principal">testuser</prop>
+				<prop key="java.naming.security.credentials">testpassword</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jmsQueueConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate">
+			<ref bean="jndiTemplate" />
+		</property>
+		<property name="jndiName">
+			<value>jms/RemoteConnectionFactory</value>
+		</property>
+	</bean>
+
+	<bean id="demuxing"
+		class="org.apache.mina.filter.codec.demux.DemuxingProtocolCodecFactory" />
+
+	<bean id="codec" class="org.megatech.horus.sgc.CodecFactory" />
+
+	<bean id="logQuartzBean" class="br.example.camel.ch1.eip.LogQuartzBean" />
+
+	<!-- <bean id="validadorComando" class="org.megatech.horus.sgc.messages.validadores.ValidadorDeMensagem" 
+		/> <bean id="processorComando" class="org.megatech.camel.processes.ProcessorComando"> 
+		<constructor-arg ref="validadorComando" /> </bean> -->
+
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+		<property name="username" value="testuser" />
+		<property name="password" value="testpassword" />
+		<property name="targetConnectionFactory" ref="jmsQueueConnectionFactory" />
+	</bean>
+
+	<bean name="jms" class="org.apache.camel.component.jms.JmsComponent">
+		<property name="connectionFactory">
+			<ref bean="connectionFactory" />
+		</property>
+	</bean>
+
+</beans>
