@@ -14,7 +14,7 @@ ext.junitVersion = '4.+'
 
 ext.slf4jVersion = '1.6.6'
 ext.commonsCollectionsVersion = '3.2'
-ext.camelVersion = '2.23.1'
+ext.camelVersion = '2.24.0'
 ext.logbackVersion = '1.0.0'
 
 repositories {
